@@ -72,6 +72,7 @@
 	
 
 </head>
+
 	
 	<body>
 		<div id="wrapper">
@@ -80,7 +81,7 @@
 				<div id="content">
 					<div class="innertube">
 						<h1 id=process-type>Heading</h1>
-						<h1>Operating Parameters</h1>
+		
 						<h3><a style='background:#eee;border:1px solid #ccc;font-size:120%;text-decoration:none;color:black;padding:3px;' href='http://www.quackit.com/html/templates/download/view_source.cfm?template=/html/templates/layout_templates/2_column_left_menu.cfm' target='_blank'>View Template Source Code</a></h3>&nbsp;<script>generateText(30)</script></p>
 					</div>
 				</div>
@@ -90,9 +91,9 @@
 				<div class="innertube">
 					<h4>MD configuration</h4>
 					<form>
-  						<input type="radio" name="gender" value="AGMD" checked> AGMD<br>
-  						<input type="radio" name="gender" value="DCMD"> DCMD<br>
- 						 <input type="radio" name="gender" value="VMD"> VMD
+  						<input type="radio" name="MDProcess" value="AGMD" checked onclick='ProcessConfig(this.value)'> AGMD<br>
+  						<input type="radio" name="MDProcess" value="DCMD" onclick='ProcessConfig(this.value)'> DCMD<br>
+ 						 <input type="radio" name="MDProcess" value="VMD" onclick='ProcessConfig(this.value)'> VMD
 					</form>
 					<h4>Membrane Type</h4>
 					<form>
@@ -116,17 +117,23 @@
 		</div>
 		<script type="text/javascript">
 			var ProcesType = document.forms[0];
-			alert(ProcesType[0].value=="AGMD")
-    			var txt = document.getElementById('process-type');
-    			if (ProcesType[0].value=="AGMD") 
-    				{
-            			txt .innerHTML= ProcesType[0].value + " Operating Parameters ";
+    			var MDprocess = document.getElementById('process-type');
+            		MDprocess .innerHTML= ProcesType[0].value + " Operating Parameters ";
             			
-       				}
+       				
 			function showValue(newValue)
 				{
 					document.getElementById("range").innerHTML=newValue;
 				}
+			function ProcessConfig(newValue){
+				MDprocess .innerHTML= newValue + " Operating Parameters ";
+			}
 		</script>
 	</body>
 </html>
+=======
+<body>
+	welcome to MD modeling website
+</body>
+</html>
+
