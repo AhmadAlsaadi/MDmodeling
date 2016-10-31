@@ -28,7 +28,10 @@
 				margin-bottom: -10000px;
 				background: #eee;
 			}
-			
+			#range{
+				
+				font-weight: bold;
+			}
 			#wrapper {
 				overflow: hidden;
 			}
@@ -45,7 +48,12 @@
 			p {
 				color: #555;
 			}
-	
+			h4{
+				-webkit-margin-after:.5em;
+			}
+			form{
+
+			}
 			nav ul {
 				list-style-type: none;
 				margin: 0;
@@ -71,7 +79,8 @@
 			<main>
 				<div id="content">
 					<div class="innertube">
-						<h1>Heading</h1>
+						<h1 id=process-type>Heading</h1>
+						<h1>Operating Parameters</h1>
 						<h3><a style='background:#eee;border:1px solid #ccc;font-size:120%;text-decoration:none;color:black;padding:3px;' href='http://www.quackit.com/html/templates/download/view_source.cfm?template=/html/templates/layout_templates/2_column_left_menu.cfm' target='_blank'>View Template Source Code</a></h3>&nbsp;<script>generateText(30)</script></p>
 					</div>
 				</div>
@@ -79,28 +88,45 @@
 			
 			<nav id="nav">
 				<div class="innertube">
-					<h3>MD configuration</h3>
+					<h4>MD configuration</h4>
 					<form>
   						<input type="radio" name="gender" value="AGMD" checked> AGMD<br>
   						<input type="radio" name="gender" value="DCMD"> DCMD<br>
  						 <input type="radio" name="gender" value="VMD"> VMD
 					</form>
-					<h3>Left heading</h3>
+					<h4>Membrane Type</h4>
 					<form>
-  						<input type="radio" name="gender" value="Flatsheet" checked> Flat Sheet<br>
-  						<input type="radio" name="gender" value="Hfiber"> Hollow Fibers<br>
+  						<input type="radio" name="MemType" value="Flatsheet" checked> Flat Sheet<br>
+  						<input type="radio" name="MemType" value="Hfiber"> Hollow Fibers<br>
 					</form>
-					<h3>Left heading</h3>
-					<ul>
-						<li><a href="#">Link 1</a></li>
-						<li><a href="#">Link 2</a></li>
-						<li><a href="#">Link 3</a></li>
-						<li><a href="#">Link 4</a></li>
-						<li><a href="#">Link 5</a></li>
-					</ul>
+					</form>
+					<h4>Flow Regime</h4>
+					<form>
+  						<input type="radio" name="FlowType" value="Co-current" > Co-current<br>
+  						<input type="radio" name="FlowType" value="counter-current" checked> Counter-current<br>
+					</form>
+					<h4>Number of MD Stages</h4>
+					<form>
+  						<input type="range" name="stages" value="1" min="0" max="10" step="1"  onchange="showValue(this.value)">
+  						<span id="range">1</span>
+					</form>
 				</div>
 			</nav>
 			
 		</div>
+		<script type="text/javascript">
+			var ProcesType = document.forms[0];
+			alert(ProcesType[0].value=="AGMD")
+    			var txt = document.getElementById('process-type');
+    			if (ProcesType[0].value=="AGMD") 
+    				{
+            			txt .innerHTML= ProcesType[0].value + " Operating Parameters ";
+            			
+       				}
+			function showValue(newValue)
+				{
+					document.getElementById("range").innerHTML=newValue;
+				}
+		</script>
 	</body>
 </html>
