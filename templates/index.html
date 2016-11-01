@@ -34,6 +34,7 @@
 			}
 			#wrapper {
 				overflow: hidden;
+				background-color: #e6ffff;
 			}
 			
 			#content {
@@ -43,6 +44,21 @@
 			.innertube{
 				margin: 15px; /* Padding for content */
 				margin-top: 0;
+			}
+			.feed{
+				float: left;
+				width: 30%;
+				margin-left: 3%	
+			}
+			.coolant{
+				float: left;
+				width: 30%;
+				margin-left: 3%	
+			}
+			.membrane{
+				float: left;
+				width: 30%;
+				margin-left: 3%
 			}
 			
 			p {
@@ -79,11 +95,52 @@
 		
 			<main>
 				<div id="content">
+
 					<div class="innertube">
 						<h1 id=process-type>Heading</h1>
 		
-						<h3><a style='background:#eee;border:1px solid #ccc;font-size:120%;text-decoration:none;color:black;padding:3px;' href='http://www.quackit.com/html/templates/download/view_source.cfm?template=/html/templates/layout_templates/2_column_left_menu.cfm' target='_blank'>View Template Source Code</a></h3>&nbsp;<script>generateText(30)</script></p>
+						<div class="feed">
+							
+							<form>
+								<h4> Feed properties</h4>
+  								Flow rate (kg/hr)
+  								<input type="text" name="FlowRate" value="1.5" > <br>
+  								Temperature (C)
+  								<input type="text" name="Temp" value="80" > <br>
+ 								 Salinity (wt%)<br>
+ 								 <input type="text" name="Sal" value="4.2" > 
+							</form>
+						</div>
+						<div class="coolant">
+							
+							<form>
+								<h4> Coolant properties</h4>
+  								Flow rate (kg/hr)
+  								<input type="text" name="FlowRate" value="1.5" > <br>
+  								Temperature (C)
+  								<input type="text" name="Temp" value="80" > <br>
+ 								 Salinity (wt%)<br>
+ 								 <input type="text" name="Sal" value="4.2" > 
+							</form>
+						</div>
+						<div class="membrane">
+							
+							<form>
+								<h4> Membrane properties</h4>
+  								Material <br>
+  								<input type="text" name="FlowRate" value="1.5" > <br>
+  								Average pore size (micron) <br>
+  								<input type="text" name="PoreSize" value="0.2" > <br>
+ 								 Porosity (%)<br>
+ 								 <input type="text" name="Porosity" value="50" > 
+ 								 Thickness (micron)<br>
+ 								 <input type="text" name="thickness" value="100" > <br>
+ 								 Thermal conductivity (W/m.C)<br>
+ 								 <input type="text" name="ThermCond" value="4.2" > 
+							</form>
+						</div>
 					</div>
+
 				</div>
 			</main>
 			
