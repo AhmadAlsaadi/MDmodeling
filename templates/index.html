@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>2 Column Layout &mdash; Left Menu</title>
+		<title>Membrane Distillation Modeling</title>
 		<style type="text/css">
 		
 			body{
@@ -63,6 +63,8 @@
 			#MDpic{
 				width:100%;
     				height: 300px;
+    				border-width: 20px;
+    				margin-top: 25px;
 			}
 			.membrane{
 				float: left;
@@ -88,6 +90,11 @@
 			nav ul a {
 				color: darkgreen;
 				text-decoration: none;
+			}
+			input[disabled] { 
+				background: #e6ffff; 
+    				color: #d1d1d1; 
+    				border: 1px solid #d1d1d1;
 			}
 	
 		</style>
@@ -132,31 +139,33 @@
  								 <input type="text" name="Sal" value="4.2" > 
 							</form>
 						</div>
-						<img id=MDpic src="https://scholar.google.com/citations?view_op=view_photo&user=gM-FzzQAAAAJ&citpid=5">
+						<img id=MDpic src="">
 						</div>
 						<div class="membrane">
 							
-							<form>
+							<form >
 								<h4> Membrane properties</h4>
   								Mass Transfer Coefficient (kg/m2.hr.Pa)<br>
-  								<input type="radio" name="Measured" value="Measured" checked onclick='ProcessConfig(this.value)'> AGMD<br>
-  								<input type="radio" name="Calculated" value="Calculated" onclick='ProcessConfig(this.value)'> DCMD<br>
+  								<input type="radio" name="MTC" value="Measured" checked onclick='MTCoption(this.value)'> Measured &emsp;
+  								<input type="text" id="MTCvalue" value="0.0012"><br>
+  								<input type="radio" name="MTC" value="Calculated" onclick='MTCoption(this.value)'>Calculated<br>
   								Material <br>
-  								<select>
-								  <option value="PTFE">PTFE</option>
-								  <option value="PVDF">PVDF</option>
-								  <option value="PP">PP</option>
-								  <option value="PE">PE</option>
-								   <option value="other">Other</option>
+  								<select id="memMaterial" onchange="materialSelector(this.value)">
+								  <option selected>PTFE</option>
+								  <option >PVDF</option>
+								  <option >PP</option>
+								  <option >PE</option>
+								   <option >Other</option>
 								 </select> <br>
+								 Thermal conductivity (W/m.C)<br>
+ 								 <input type="text" id="ThermCond" value="4.2" > <br>
 				  				Average pore size (micron) <br>
-  								<input type="text" name="PoreSize" value="0.2" > <br>
+  								<input type="text" id="PoreSize" value="0.2" > <br>
  								 Porosity (%)<br>
- 								 <input type="text" name="Porosity" value="50" > <br>
+ 								 <input type="text" id="Porosity" value="50" > <br>
  								 Thickness (micron)<br>
  								 <input type="text" name="thickness" value="100" > <br>
- 								 Thermal conductivity (W/m.C)<br>
- 								 <input type="text" name="ThermCond" value="4.2" > <br>
+ 								 
  								 No. of hollow fibers<br>
  								 <input type="text" name="NoHfiber" value="4.2" ><br>
  								 Inside diameter (micron) <br>
@@ -179,7 +188,7 @@
   						<input type="radio" name="MDProcess" value="DCMD" onclick='ProcessConfig(this.value)'> DCMD<br>
  						 <input type="radio" name="MDProcess" value="VMD" onclick='ProcessConfig(this.value)'> VMD
 					</form>
-					<h4>Membrane Type</h4>
+					<h4>Module Type</h4>
 					<form>
   						<input type="radio" name="MemType" value="Flatsheet" checked> Flat Sheet<br>
   						<input type="radio" name="MemType" value="Hfiber"> Hollow Fibers<br>
@@ -200,18 +209,45 @@
 			
 		</div>
 		<script type="text/javascript">
-			var ProcesType = document.forms[0];
+			var ProcesType = document.forms[3];
     			var MDprocess = document.getElementById('process-type');
             		MDprocess .innerHTML= ProcesType[0].value + " Operating Parameters ";
-            			
-       				
+            		document.getElementById('ThermCond').disabled=true;
+            		document.getElementById('PoreSize').disabled=true;
+            		document.getElementById('Porosity').disabled=true;
+            		function materialSelector(material){
+            		if (material=="Other"){
+            			document.getElementById('ThermCond').disabled=false;
+            		}else{
+            			document.getElementById('ThermCond').disabled=true;
+            		}	
+       			}	
 			function showValue(newValue)
 				{
 					document.getElementById("range").innerHTML=newValue;
 				}
-			function ProcessConfig(newValue){
+			function ProcessConfig(newValue)
+				{
 				MDprocess .innerHTML= newValue + " Operating Parameters ";
-			}
+				}
+			function MTCoption(mtcValue)
+				{
+					if(mtcValue=="Calculated")
+					{
+					document.getElementById("MTCvalue").style.visibility="hidden";
+					document.getElementById('PoreSize').disabled=false;
+					document.getElementById('Porosity').disabled=false;
+				//document.getElementByTagName("MTCvalue").disabled=true;
+					}
+					else{
+					document.getElementById("MTCvalue").style.visibility="visible";
+					document.getElementById('PoreSize').disabled=true;
+					document.getElementById('Porosity').disabled=true;
+					
+						}
+				}
+
+		
 		</script>
 	</body>
 </html>
