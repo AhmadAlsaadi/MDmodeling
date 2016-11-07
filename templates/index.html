@@ -60,11 +60,14 @@
 				width: 47%;
 				margin-left: 3%	
 			}
-			#MDpic{
+			#PFD{
 				width:100%;
-    				height: 300px;
-    				border-width: 20px;
+    				height: 500px;
+    				float:left;
+    				border-width: 10px;
+    				border-color:black;
     				margin-top: 25px;
+    				background-color:yellow;
 			}
 			.membrane{
 				float: left;
@@ -139,8 +142,11 @@
  								 <input type="text" name="Sal" value="4.2" > 
 							</form>
 						</div>
-						<img id=MDpic src="">
+						<div id=PFD ondragover="allowDrop(event)" ondrop="drop(event)">
+						
 						</div>
+						</div>
+
 						<div class="membrane">
 							
 							<form >
@@ -167,11 +173,11 @@
  								 <input type="text" name="thickness" value="100" > <br>
  								 
  								 No. of hollow fibers<br>
- 								 <input type="text" name="NoHfiber" value="4.2" ><br>
+ 								 <input type="text" id="" ="NoHfiber" value="4.2" ><br>
  								 Inside diameter (micron) <br>
- 								 <input type="text" name="InnerDiam" value="600" ><br>
+ 								 <input type="text" id="InnerDiam" value="600" ><br>
  								 Outside diameter (micron) <br>
- 								 <input type="text" name="OuterDiam" value="1000" ><br>
+ 								 <input type="text" id="OuterDiam" value="1000" ><br>
 							</form>
 						</div>
 						
@@ -184,9 +190,9 @@
 				<div class="innertube">
 					<h4>MD configuration</h4>
 					<form>
-  						<input type="radio" name="MDProcess" value="AGMD" checked onclick='ProcessConfig(this.value)'> AGMD<br>
-  						<input type="radio" name="MDProcess" value="DCMD" onclick='ProcessConfig(this.value)'> DCMD<br>
- 						 <input type="radio" name="MDProcess" value="VMD" onclick='ProcessConfig(this.value)'> VMD
+  						<input type="button"  id="AGMD" draggable ="true"  value="AGMD" ondragstart="drag(event)"><br>
+  						<input type="button"  id="DCMD" draggable="true"  value="DCMD" ondragstart="drag(event)"><br>
+ 						 <input type="button" id="VMD" draggable="true"  value="VMD" ondragstart="drag(event)"> 
 					</form>
 					<h4>Module Type</h4>
 					<form>
@@ -246,6 +252,23 @@
 					
 						}
 				}
+			function allowDrop(ev) {
+    					ev.preventDefault();
+				}
+			function drag(ev) {
+    				ev.dataTransfer.setData("text", ev.target.id);
+				}
+
+			function drop(ev) {
+    				ev.preventDefault();
+    				var data = ev.dataTransfer.getData("text");
+    				if (data=="AGMD" || data == "VMD" || data=="DCMD"){
+    				var nodeCopy = document.getElementById(data).cloneNode(true);
+  				nodeCopy.id = "newId"; /* We cannot use the same ID */
+  				ev.target.appendChild(nodeCopy);
+  				}
+  				
+				}	
 
 		
 		</script>
