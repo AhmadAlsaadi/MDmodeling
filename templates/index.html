@@ -99,6 +99,16 @@
     				color: #d1d1d1; 
     				border: 1px solid #d1d1d1;
 			}
+			.process {
+    				background-color: gray; /* Green */
+    				border: none;
+    				color: white;
+   				padding: 15px 32px;
+   				margin-bottom: 5px;
+    				text-align: center;
+    				font-size: 16px;
+    				position: absolute;
+}
 	
 		</style>
 		
@@ -142,7 +152,7 @@
  								 <input type="text" name="Sal" value="4.2" > 
 							</form>
 						</div>
-						<div id=PFD ondragover="allowDrop(event)" ondrop="drop(event)">
+						<div id=PFD ondragover="dragover(event)" ondrop="dropped(event)">
 						
 						</div>
 						</div>
@@ -190,9 +200,9 @@
 				<div class="innertube">
 					<h4>MD configuration</h4>
 					<form>
-  						<input type="button"  id="AGMD" draggable ="true"  value="AGMD" ondragstart="drag(event)"><br>
-  						<input type="button"  id="DCMD" draggable="true"  value="DCMD" ondragstart="drag(event)"><br>
- 						 <input type="button" id="VMD" draggable="true"  value="VMD" ondragstart="drag(event)"> 
+  						<input class="process" type="button"  id="AGMD" draggable ="true"  value="AGMD" ondragstart="startDrag(event)" ><br>
+  						<input class="process" type="button"  id="DCMD" draggable="true"  value="DCMD" ondragstart="startDrag(event)"><br>
+ 						 <input  class="process" type="button" id="VMD" draggable="true"  value="VMD" ondragstart="startDrag(event)"> 
 					</form>
 					<h4>Module Type</h4>
 					<form>
@@ -215,6 +225,7 @@
 			
 		</div>
 		<script type="text/javascript">
+			var offset_data;
 			var ProcesType = document.forms[3];
     			var MDprocess = document.getElementById('process-type');
             		MDprocess .innerHTML= ProcesType[0].value + " Operating Parameters ";
@@ -252,21 +263,33 @@
 					
 						}
 				}
-			function allowDrop(ev) {
-    					ev.preventDefault();
+			
+			function startDrag(ev) {
+    				var style = window.getComputedStyle(ev.target, null);
+    				offset_data = (parseInt(style.getPropertyValue("left"),10) - ev.clientX) + ',' + (parseInt(style.getPropertyValue("top"),10) - ev.clientY+','+ev.target.id);
+    				console.log(offset_data);
+   				 ev.dataTransfer.setData("text/plain",offset_data);
 				}
-			function drag(ev) {
-    				ev.dataTransfer.setData("text", ev.target.id);
-				}
+			function dragover(ev) {
+				ev.preventDefault(); 
+    				var offset;
+   				offset = offset_data.split(',');
+   				console.log(offset);
+   				 var dm = document.getElementById(offset[2]);
+    				//dm.style.left = (ev.clientX + parseInt(offset[0],10)) + 'px';
+   				//dm.style.top = (ev.clientY + parseInt(offset[1],10)) + 'px';
+    				return false;
+    			}
 
-			function drop(ev) {
+			function dropped(ev) {
+				ev.preventDefault();
+    				var offset;
+    				offset = offset_data.split(',');
+    				var dm = document.getElementById(offset[2]);
+    				dm.style.left = (ev.clientX + parseInt(offset[0],10)) + 'px';
+    				dm.style.top = (ev.clientY + parseInt(offset[1],10)) + 'px';
     				ev.preventDefault();
-    				var data = ev.dataTransfer.getData("text");
-    				if (data=="AGMD" || data == "VMD" || data=="DCMD"){
-    				var nodeCopy = document.getElementById(data).cloneNode(true);
-  				nodeCopy.id = "newId"; /* We cannot use the same ID */
-  				ev.target.appendChild(nodeCopy);
-  				}
+    				return false;
   				
 				}	
 
