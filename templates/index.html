@@ -100,11 +100,8 @@
     				border: 1px solid #d1d1d1;
 			}
 			.process {
-    				background-color: gray; /* Green */
-    				border: none;
-    				color: white;
-   				padding: 15px 32px;
-   				margin-bottom: 5px;
+    				background-color: lightGray; 
+    				padding: 15px 15px;
     				text-align: center;
     				font-size: 16px;
     				position: absolute;
@@ -267,15 +264,14 @@
 			function startDrag(ev) {
     				var style = window.getComputedStyle(ev.target, null);
     				offset_data = (parseInt(style.getPropertyValue("left"),10) - ev.clientX) + ',' + (parseInt(style.getPropertyValue("top"),10) - ev.clientY+','+ev.target.id);
-    				console.log(offset_data);
    				 ev.dataTransfer.setData("text/plain",offset_data);
 				}
 			function dragover(ev) {
 				ev.preventDefault(); 
-    				var offset;
-   				offset = offset_data.split(',');
-   				console.log(offset);
-   				 var dm = document.getElementById(offset[2]);
+    				//var offset;
+   				//offset = offset_data.split(',');
+   				//console.log(offset);
+   				 //var dm = document.getElementById(offset[2]);
     				//dm.style.left = (ev.clientX + parseInt(offset[0],10)) + 'px';
    				//dm.style.top = (ev.clientY + parseInt(offset[1],10)) + 'px';
     				return false;
@@ -286,8 +282,16 @@
     				var offset;
     				offset = offset_data.split(',');
     				var dm = document.getElementById(offset[2]);
-    				dm.style.left = (ev.clientX + parseInt(offset[0],10)) + 'px';
-    				dm.style.top = (ev.clientY + parseInt(offset[1],10)) + 'px';
+    				if(offset[2]=='AGMD' || offset[2]=='DCMD' || offset[2]=='VMD'){
+    				var nodeCopy=dm.cloneNode(true);
+    				nodeCopy.id=dm.id+1
+    				nodeCopy.style.left = (ev.clientX + parseInt(offset[0],10)) + 'px';
+    				nodeCopy.style.top = (ev.clientY + parseInt(offset[1],10)) + 'px';
+    				ev.target.appendChild(nodeCopy);
+    				}else{
+    					dm.style.left = (ev.clientX + parseInt(offset[0],10)) + 'px';
+    					dm.style.top = (ev.clientY + parseInt(offset[1],10)) + 'px';
+    				}
     				ev.preventDefault();
     				return false;
   				
