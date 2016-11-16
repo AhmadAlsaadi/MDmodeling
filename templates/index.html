@@ -4,301 +4,34 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Membrane Distillation Modeling</title>
-		<style type="text/css">
-		
-			body{
-				margin:0;
-				padding:0;
-				font-family: Sans-Serif;
-				line-height: 1.5em;
-			}
-			
-			main {
-				padding-bottom: 10010px;
-				margin-bottom: -10000px;
-				float: left;
-				width: 100%;
-			}
-			
-			#nav {
-				float: left;
-				width: 230px;
-				margin-left: -100%;
-				padding-bottom: 10010px;
-				margin-bottom: -10000px;
-				background: #eee;
-			}
-			#range{
-				
-				font-weight: bold;
-			}
-			#wrapper {
-				overflow: hidden;
-				background-color: #e6ffff;
-			}
-			
-			#content {
-				margin-left: 230px; /* Same as 'nav' width */
-			}
-			
-			.innertube{
-				margin: 15px; /* Padding for content */
-				margin-top: 0;
-			}
-			.fluids{
-				float: left;
-				width: 65%;
-			}
-			.feed{
-				float: left;
-				width: 47%;
-				margin-left: 3%
-
-			}
-			.coolant{
-				float:left;
-				width: 47%;
-				margin-left: 3%	
-			}
-			#PFD{
-				width:100%;
-    				height: 500px;
-    				float:left;
-    				border-width: 10px;
-    				border-color:black;
-    				margin-top: 25px;
-    				background-color:yellow;
-			}
-			.membrane{
-				float: left;
-				width: 30%;
-				margin-left: 3%
-			}
-			
-			p {
-				color: #555;
-			}
-			h4{
-				-webkit-margin-after:.5em;
-			}
-			form{
-
-			}
-			nav ul {
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			
-			nav ul a {
-				color: darkgreen;
-				text-decoration: none;
-			}
-			input[disabled] { 
-				background: #e6ffff; 
-    				color: #d1d1d1; 
-    				border: 1px solid #d1d1d1;
-			}
-			.process {
-    				background-color: lightGray; 
-    				padding: 15px 15px;
-    				text-align: center;
-    				font-size: 16px;
-    				position: absolute;
-}
-	
-		</style>
-		
-			
-	
-	
-
-</head>
-
-	
+		<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+		<script type="text/javascript" src="../static/js/main.js"></script>
+	</head>
 	<body>
 		<div id="wrapper">
-		
 			<main>
 				<div id="content">
-
 					<div class="innertube">
-						<h1 id=process-type>Heading</h1>
-						<div class=fluids>
-						<div class="feed">
-							
-							<form>
-								<h4> Feed properties</h4>
-  								Flow rate (kg/hr)<br>
-  								<input type="text" name="FlowRate" value="1.5" > <br>
-  								Temperature (C)<br>
-  								<input type="text" name="Temp" value="80" > <br>
- 								 Salinity (wt%)<br>
- 								 <input type="text" name="Sal" value="4.2" > 
-							</form>
-						</div>
-						<div class="coolant">
-							
-							<form>
-								<h4> Coolant properties</h4>
-  								Flow rate (kg/hr) <br>
-  								<input type="text" name="FlowRate" value="1.5" > <br>
-  								Temperature (C)<br>
-  								<input type="text" name="Temp" value="80" > <br>
- 								 Salinity (wt%)<br>
- 								 <input type="text" name="Sal" value="4.2" > 
-							</form>
-						</div>
 						<div id=PFD ondragover="dragover(event)" ondrop="dropped(event)">
-						
 						</div>
-						</div>
-
-						<div class="membrane">
-							
-							<form >
-								<h4> Membrane properties</h4>
-  								Mass Transfer Coefficient (kg/m2.hr.Pa)<br>
-  								<input type="radio" name="MTC" value="Measured" checked onclick='MTCoption(this.value)'> Measured &emsp;
-  								<input type="text" id="MTCvalue" value="0.0012"><br>
-  								<input type="radio" name="MTC" value="Calculated" onclick='MTCoption(this.value)'>Calculated<br>
-  								Material <br>
-  								<select id="memMaterial" onchange="materialSelector(this.value)">
-								  <option selected>PTFE</option>
-								  <option >PVDF</option>
-								  <option >PP</option>
-								  <option >PE</option>
-								   <option >Other</option>
-								 </select> <br>
-								 Thermal conductivity (W/m.C)<br>
- 								 <input type="text" id="ThermCond" value="4.2" > <br>
-				  				Average pore size (micron) <br>
-  								<input type="text" id="PoreSize" value="0.2" > <br>
- 								 Porosity (%)<br>
- 								 <input type="text" id="Porosity" value="50" > <br>
- 								 Thickness (micron)<br>
- 								 <input type="text" name="thickness" value="100" > <br>
- 								 
- 								 No. of hollow fibers<br>
- 								 <input type="text" id="" ="NoHfiber" value="4.2" ><br>
- 								 Inside diameter (micron) <br>
- 								 <input type="text" id="InnerDiam" value="600" ><br>
- 								 Outside diameter (micron) <br>
- 								 <input type="text" id="OuterDiam" value="1000" ><br>
-							</form>
-						</div>
-						
-					</div>
-
+					</div>	
 				</div>
 			</main>
-			
 			<nav id="nav">
 				<div class="innertube">
-					<h4>MD configuration</h4>
-					<form>
-  						<input class="process" type="button"  id="AGMD" draggable ="true"  value="AGMD" ondragstart="startDrag(event)" ><br>
-  						<input class="process" type="button"  id="DCMD" draggable="true"  value="DCMD" ondragstart="startDrag(event)"><br>
- 						 <input  class="process" type="button" id="VMD" draggable="true"  value="VMD" ondragstart="startDrag(event)"> 
-					</form>
-					<h4>Module Type</h4>
-					<form>
-  						<input type="radio" name="MemType" value="Flatsheet" checked> Flat Sheet<br>
-  						<input type="radio" name="MemType" value="Hfiber"> Hollow Fibers<br>
-					</form>
-					</form>
-					<h4>Flow Regime</h4>
-					<form>
-  						<input type="radio" name="FlowType" value="Co-current" > Co-current<br>
-  						<input type="radio" name="FlowType" value="counter-current" checked> Counter-current<br>
-					</form>
-					<h4>Number of MD Stages</h4>
-					<form>
-  						<input type="range" name="stages" value="1" min="0" max="10" step="1"  onchange="showValue(this.value)">
-  						<span id="range">1</span>
-					</form>
+					<div class="tools">
+							<fieldset class='fieldset1'>
+								<legend>tools</legend>
+				  						<input class="process" type="button"  id="AGMD" draggable ="true"  value="AGMD HF" ondragstart="startDrag(event)" >
+				  						<br>
+				  						<input class="process" type="button"  id="DCMD" draggable="true"  value="DCMD" ondragstart="startDrag(event)"><br>
+				 						 <input  class="process" type="button" id="VMD" draggable="true"  value="VMD" ondragstart="startDrag(event)"><br>  
+							</fieldset>
+					</div>
 				</div>
 			</nav>
-			
 		</div>
-		<script type="text/javascript">
-			var offset_data;
-			var ProcesType = document.forms[3];
-    			var MDprocess = document.getElementById('process-type');
-            		MDprocess .innerHTML= ProcesType[0].value + " Operating Parameters ";
-            		document.getElementById('ThermCond').disabled=true;
-            		document.getElementById('PoreSize').disabled=true;
-            		document.getElementById('Porosity').disabled=true;
-            		function materialSelector(material){
-            		if (material=="Other"){
-            			document.getElementById('ThermCond').disabled=false;
-            		}else{
-            			document.getElementById('ThermCond').disabled=true;
-            		}	
-       			}	
-			function showValue(newValue)
-				{
-					document.getElementById("range").innerHTML=newValue;
-				}
-			function ProcessConfig(newValue)
-				{
-				MDprocess .innerHTML= newValue + " Operating Parameters ";
-				}
-			function MTCoption(mtcValue)
-				{
-					if(mtcValue=="Calculated")
-					{
-					document.getElementById("MTCvalue").style.visibility="hidden";
-					document.getElementById('PoreSize').disabled=false;
-					document.getElementById('Porosity').disabled=false;
-				//document.getElementByTagName("MTCvalue").disabled=true;
-					}
-					else{
-					document.getElementById("MTCvalue").style.visibility="visible";
-					document.getElementById('PoreSize').disabled=true;
-					document.getElementById('Porosity').disabled=true;
-					
-						}
-				}
-			
-			function startDrag(ev) {
-    				var style = window.getComputedStyle(ev.target, null);
-    				offset_data = (parseInt(style.getPropertyValue("left"),10) - ev.clientX) + ',' + (parseInt(style.getPropertyValue("top"),10) - ev.clientY+','+ev.target.id);
-   				 ev.dataTransfer.setData("text/plain",offset_data);
-				}
-			function dragover(ev) {
-				ev.preventDefault(); 
-    				//var offset;
-   				//offset = offset_data.split(',');
-   				//console.log(offset);
-   				 //var dm = document.getElementById(offset[2]);
-    				//dm.style.left = (ev.clientX + parseInt(offset[0],10)) + 'px';
-   				//dm.style.top = (ev.clientY + parseInt(offset[1],10)) + 'px';
-    				return false;
-    			}
 
-			function dropped(ev) {
-				ev.preventDefault();
-    				var offset;
-    				offset = offset_data.split(',');
-    				var dm = document.getElementById(offset[2]);
-    				if(offset[2]=='AGMD' || offset[2]=='DCMD' || offset[2]=='VMD'){
-    				var nodeCopy=dm.cloneNode(true);
-    				nodeCopy.id=dm.id+1
-    				nodeCopy.style.left = (ev.clientX + parseInt(offset[0],10)) + 'px';
-    				nodeCopy.style.top = (ev.clientY + parseInt(offset[1],10)) + 'px';
-    				ev.target.appendChild(nodeCopy);
-    				}else{
-    					dm.style.left = (ev.clientX + parseInt(offset[0],10)) + 'px';
-    					dm.style.top = (ev.clientY + parseInt(offset[1],10)) + 'px';
-    				}
-    				ev.preventDefault();
-    				return false;
-  				
-				}	
-
-		
-		</script>
 	</body>
 </html>
 
