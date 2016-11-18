@@ -19,14 +19,16 @@ function dragover(ev) {
 				ev.preventDefault(); 
     			return false;
     			}
-function dropped(ev) {
+function dropped(ev,parseProcess) {
+                var mySet = new Set(parseProcess);
 				ev.preventDefault();
     			var offset;
     			offset = offset_data.split(',');
     			var dm = document.getElementById(offset[2]);
-    			if(offset[2]=='AGMD' || offset[2]=='DCMD' || offset[2]=='VMD'){
+    			if(mySet.has(offset[2])){
     			var nodeCopy=dm.cloneNode(true);
-    			nodeCopy.id=dm.id+1
+    			nodeCopy.id=dm.id+'-'+1
+                nodeCopy.value=dm.id+'-'+1
     			nodeCopy.style.left = (ev.clientX + parseInt(offset[0],10)) + 'px';
     			nodeCopy.style.top = (ev.clientY + parseInt(offset[1],10)) + 'px';
     			ev.target.appendChild(nodeCopy);
