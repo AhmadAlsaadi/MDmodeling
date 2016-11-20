@@ -1,4 +1,8 @@
 var offset_data;
+var counter;
+function processInfo(data){
+    processData=data;
+}
 function MTCoption(mtcValue){
 				if(mtcValue=="Calculated"){
 				document.getElementById("MTCvalue").style.visibility="hidden";
@@ -19,18 +23,20 @@ function dragover(ev) {
 				ev.preventDefault(); 
     			return false;
     			}
-function dropped(ev,parseProcess) {
-                var mySet = new Set(parseProcess);
+function dropped(ev) {
+                var processSet = new Set(processData.processType);
 				ev.preventDefault();
     			var offset;
     			offset = offset_data.split(',');
     			var dm = document.getElementById(offset[2]);
-    			if(mySet.has(offset[2])){
+    			if(processSet.has(offset[2])){
+                processData.processCounter[offset[2]]+=1;
     			var nodeCopy=dm.cloneNode(true);
-    			nodeCopy.id=dm.id+'-'+1
-                nodeCopy.value=dm.id+'-'+1
+    			nodeCopy.id=dm.id+'-'+ processData.processCounter[offset[2]]
+                nodeCopy.value=dm.id+'-'+ processData.processCounter[offset[2]]
     			nodeCopy.style.left = (ev.clientX + parseInt(offset[0],10)) + 'px';
     			nodeCopy.style.top = (ev.clientY + parseInt(offset[1],10)) + 'px';
+                nodeCopy.setAttribute("onclick","parameters()");
     			ev.target.appendChild(nodeCopy);
     			}else{
     				dm.style.left = (ev.clientX + parseInt(offset[0],10)) + 'px';
@@ -38,4 +44,7 @@ function dropped(ev,parseProcess) {
     			}
     			ev.preventDefault();
     			return false;
-				}	
+				}
+function parameters(){
+    alert("Hello Ahmad");
+}	

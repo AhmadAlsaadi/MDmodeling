@@ -7,12 +7,12 @@
 		<link rel="stylesheet" type="text/css" href="../static/css/main.css">
 		<script type="text/javascript" src="../static/js/main.js"></script>
 	</head>
-	<body>
+	<body onload="processInfo({{processData}})">
 		<div id="wrapper">
 			<main>
 				<div id="content">
 					<div class="innertube">
-						<div id=PFD ondragover="dragover(event)" ondrop="dropped(event,{{processData.processType}})">
+						<div id=PFD ondragover="dragover(event)" ondrop="dropped(event)">
 						</div>
 					</div>	
 				</div>
