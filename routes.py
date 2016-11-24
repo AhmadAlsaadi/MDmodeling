@@ -4,13 +4,13 @@ import json
 app=Flask(__name__)
 processData={"processType":["AGMD FS","DCMD FS","VMD FS","AGMD HF","DCMD HF","VMD HF"],
 			"processCounter":{"AGMD FS":0,"AGMD HF":0,"DCMD FS":0,"DCMD HF":0,"VMD FS":0,"VMD HF":0},
-			"processParameters":{"AGMD FS":{"feed":{"flowrate":1,"temperature":80,"salinity":4}
-											"coolant":{"flowrate":1,"temperature":20,"salinity":0}
-											"membrane":{"MTCType":"measured","MTCValue":0.01,"material":["PTFE",
+			"processParameters":{"AGMD FS":{"feed":{"flowrate":1,"temperature":80,"salinity":4},
+							         "coolant":{"flowrate":1,"temperature":20,"salinity":0},
+							         "membrane":{"MTCType":"measured","MTCValue":0.01,"material":["PTFE",
 											"PVDF","PP","others"],"materialSelected":"PTFE","avgPore":0.2,"porosity":80,
 											"thermalCond":0.12,"thickness":100,"width":10,"length":10}
-											}
 								}
+						}
 			}
 
 @app.route("/")

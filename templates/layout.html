@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Template by quackit.com -->
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -14,6 +13,31 @@
 					<div class="innertube">
 						<div id=PFD ondragover="dragover(event)" ondrop="dropped(event)">
 						</div>
+						<dialog id="parameters" draggable="false">
+							<ul class="tab">
+  							<li><a href="javascript:void(0)" class="tablinks" onclick="showTab(event, 'feed')" id="defaultOpen">Feed</a></li>
+  							<li><a href="javascript:void(0)" class="tablinks" onclick="showTab(event, 'coolant')">Coolant</a></li>
+ 							 <li><a href="javascript:void(0)" class="tablinks" onclick="showTab(event, 'membrane')">Membrane</a></li>
+							</ul>
+							<div id="feed" class="tabcontent">
+  								Flow rate (kg/hr)<br>
+  								<input type="text" name="FlowRate" value="1.5" > <br>
+  								Temperature (C)<br>
+  								<input type="text" name="Temp" value="80" > <br>
+ 								 Salinity (wt%)<br>
+ 								 <input type="text" name="Sal" value="4.2" > 
+							</div>
+							<div id="coolant" class="tabcontent">
+  								Flow rate (kg/hr) <br>
+  								<input type="text" name="FlowRate" value="1.5" > <br>
+  								Temperature (C)<br>
+  								<input type="text" name="Temp" value="80" > <br>
+ 								 Salinity (wt%)<br>
+ 								 <input type="text" name="Sal" value="4.2" > 
+							</div>
+								<button id="exit">Cancel</button>
+								<button id="OK">Ok</button>
+						</dialog>
 					</div>	
 				</div>
 			</main>
